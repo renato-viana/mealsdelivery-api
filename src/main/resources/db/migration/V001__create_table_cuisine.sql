@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `cuisine` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `name` varchar(80) NOT NULL,
+
+    PRIMARY KEY (`id`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;

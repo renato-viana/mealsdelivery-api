@@ -1,0 +1,74 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mealsdelivery?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+    username: root
+    password:
+
+  flyway:
+    url: jdbc:mysql://localhost:3306/mealsdelivery?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+    user: root
+    password:
+    locations: classpath:db/migration,classpath:db/data
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      fail-on-ignored-properties: true
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+    resources:
+      add-mappings: false
+
+  mail:
+    host: smtp.sendgrid.net
+    port: 587
+    username: apikey
+    #password:
+
+  freemarker:
+    settings:
+      locale: pt_BR
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/.well-known/jwks.json
+
+mealsdelivery:
+  email:
+    sender: MealsDelivery <naoresponder.mealsdelivery.api@gmail.com>
+    impl: sandbox
+    sandbox:
+      recipient: mealsdelivery.customer@gmail.com
+
+  storage:
+    type: local
+
+    local:
+      image-directory: C:\\Users\\renat\\Desktop\\catalogo
+
+    s3:
+      #id-access-key:
+      #secret-access-key:
+      bucket: mealsdelivery-api-assets-staging
+      region: us_east_1
+      image-directory: catalogo
+
+  jwt:
+    keystore:
+      jks-location: base64:${MEALS_DELIVERY_JKS}
+      password: 123456
+      keypair-alias: mealsdelivery
+
+server:
+  compression:
+    enabled: true
